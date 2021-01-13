@@ -1,4 +1,4 @@
-name: qa-jupyer docker
+name: qacommunity
 
 on:
   push:
