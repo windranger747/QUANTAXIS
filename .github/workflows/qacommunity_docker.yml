@@ -16,6 +16,8 @@ on:
 env:
   # TODO: Change variable to your image's name.
   IMAGE_NAME: qacommunity
+  PASSWORD: ${{ secrets.PASSWORD }}
+  USERNAME: ${{ secrets.USERNAME }}
 
 jobs:
 
@@ -34,7 +36,7 @@ jobs:
 
       - name: Log into registry
         run: |
-          echo "${{ secrets.PASSWORD }}" | docker login registry.cn-hangzhou.aliyuncs.com -u "${{ secrets.USERNAME }}" --password-stdin
+          echo $PASSWORD | docker login registry.cn-hangzhou.aliyuncs.com -u $USERNAME --password-stdin
 
           IMAGE_ID=registry.cn-hangzhou.aliyuncs.com/retire/$IMAGE_NAME
 
