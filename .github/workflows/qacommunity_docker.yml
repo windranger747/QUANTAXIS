@@ -35,12 +35,7 @@ jobs:
 
 
       - name: Log into registry
-        run: |
-          echo "$PASSWORD" | docker login registry.cn-hangzhou.aliyuncs.com --username="$USERNAME" --password-stdin
-
-          IMAGE_ID=registry.cn-hangzhou.aliyuncs.com/retire/$IMAGE_NAME
-
-          IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+        run: echo "$PASSWORD" | docker login registry.cn-hangzhou.aliyuncs.com --username="$USERNAME" --password-stdin
 
       - name: Build image
         run: docker build -t $IMAGE_NAME -f ./docker/my_community/Dockerfile .
