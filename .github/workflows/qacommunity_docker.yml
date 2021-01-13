@@ -34,9 +34,12 @@ jobs:
 
 
       - name: Log into registry
-        run: docker login --username=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} $URL
-            IMAGE_ID=$URL/retire/$IMAGE_NAME
-            IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
+        run: |
+        docker login --username=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} $URL
+
+        IMAGE_ID=$URL/retire/$IMAGE_NAME
+
+        IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
       - name: Build image
         run: docker build -t $IMAGE_NAME -f ./docker/my_community/Dockerfile .
