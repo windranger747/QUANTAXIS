@@ -1,4 +1,4 @@
-name: qaeventmq docker
+name: qa-jupyer docker
 
 on:
   push:
@@ -15,7 +15,7 @@ on:
 
 env:
   # TODO: Change variable to your image's name.
-  IMAGE_NAME: qaeventmq
+  IMAGE_NAME: qacommunity
 
 jobs:
 
@@ -32,14 +32,14 @@ jobs:
       - uses: actions/checkout@v2
 
       - name: Build image
-        run: cd docker/qa-eventmq/ && docker build . --file Dockerfile --tag $IMAGE_NAME
+        run: docker build -t $IMAGE_NAME -f ./docker/my_community/Dockerfile .
 
       - name: Log into registry
-        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login docker.pkg.github.com -u ${{ github.actor }} --password-stdin
+        run: echo "${{ secrets.PASSWORD }}" | docker login registry.cn-hangzhou.aliyuncs.com -u ${{ secrets.USERNAME }} --password-stdin
 
       - name: Push image
         run: |
-          IMAGE_ID=docker.pkg.github.com/${{ github.repository }}/$IMAGE_NAME
+          IMAGE_ID=docker.pkg.github.com/retire/$IMAGE_NAME
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
