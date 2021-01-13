@@ -1,7 +1,7 @@
 version: '2'
 services:
     qa:
-        image: qacommunity:latest
+        image: registry.cn-hangzhou.aliyuncs.com/retire/qacommunity:latest
         container_name: qacommunity
         depends_on:
             - mgdb
