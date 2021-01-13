@@ -31,11 +31,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - name: Build image
-        run: docker build -t $IMAGE_NAME -f ./docker/my_community/Dockerfile .
 
       - name: Log into registry
-        run: echo "${{ secrets.PASSWORD }}" | docker login registry.cn-hangzhou.aliyuncs.com -u ${{ secrets.USERNAME }} --password-stdin
+        run: docker login --username=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} ${{ secrets.URL }}
+
+      - name: Build image
+        run: docker build -t $IMAGE_NAME -f ./docker/my_community/Dockerfile .
 
       - name: Push image
         run: |
