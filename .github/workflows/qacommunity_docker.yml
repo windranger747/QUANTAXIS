@@ -36,7 +36,7 @@ jobs:
 
       - name: Log into registry
         run: |
-          echo "$PASSWORD" | docker login registry.cn-hangzhou.aliyuncs.com -u "$USERNAME" --password-stdin
+          echo "$PASSWORD" | docker login registry.cn-hangzhou.aliyuncs.com --username "$USERNAME" --password-stdin
 
           IMAGE_ID=registry.cn-hangzhou.aliyuncs.com/retire/$IMAGE_NAME
 
