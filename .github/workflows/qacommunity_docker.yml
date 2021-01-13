@@ -16,7 +16,6 @@ on:
 env:
   # TODO: Change variable to your image's name.
   IMAGE_NAME: qacommunity
-  URL: "registry.cn-hangzhou.aliyuncs.com"
 
 jobs:
 
@@ -35,9 +34,9 @@ jobs:
 
       - name: Log into registry
         run: |
-          docker login --username=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} $URL
+          docker login --username=${{ secrets.USERNAME }} --password=${{ secrets.PASSWORD }} registry.cn-hangzhou.aliyuncs.com
 
-          IMAGE_ID=$URL/retire/$IMAGE_NAME
+          IMAGE_ID=registry.cn-hangzhou.aliyuncs.com/retire/$IMAGE_NAME
 
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
 
@@ -46,7 +45,7 @@ jobs:
 
       - name: Push image
         run: |
-          IMAGE_ID=$URL/retire/$IMAGE_NAME
+          IMAGE_ID=registry.cn-hangzhou.aliyuncs.com/retire/$IMAGE_NAME
 
           # Change all uppercase to lowercase
           IMAGE_ID=$(echo $IMAGE_ID | tr '[A-Z]' '[a-z]')
