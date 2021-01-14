@@ -1,6 +1,6 @@
 FROM daocloud.io/quantaxis/qacommunity:latest
 
-COPY . /root/quantaxis
+COPY docker/my_community /root/quantaxis
 
 RUN apt-get update && apt-get install -y openssh-server && mkdir /var/run/sshd && echo 'root:passwd' | chpasswd && \
 # sed -i 's/PermitRootLogin without-password/PermitRootLogin yes/' /etc/ssh/sshd_config && \
