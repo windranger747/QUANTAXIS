@@ -1,4 +1,4 @@
-FROM daocloud.io/quantaxis/qacommunity:latest
+FROM daocloud.io/quantaxis/qacommunity-rust-go:allin-20201222
 
 COPY . /root/quantaxis
 
