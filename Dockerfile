@@ -9,4 +9,5 @@ sed 's@session\s*required\s*pam_loginuid.so@session optional pam_loginuid.so@g' 
 echo "export VISIBLE=now" >> /etc/profile && sed -i "1a service ssh restart" /root/run-community.sh
 
 RUN cd /root/quantaxis && pip uninstall -y quantaxis && pip install .
+RUN rm -rf /root/qamazing_community && cd /root && git clone https://gitee.com/yutiansut/qamazing_community && pip install -U qifiaccount
 # docker build -t qacommunity -f ./docker/my_community/Dockerfile .
